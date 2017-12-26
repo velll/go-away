@@ -1,12 +1,18 @@
-browser.menus.create({
-  id: "go-away",
-  title: "Go away!",
-  contexts: ["all"]
-});
-
-browser.menus.onClicked.addListener(function(info, tab) {
-  if (info.menuItemId == "go-away") {
-    let target = browser.menus.getTargetElement(info.targetElementId);
-    console.log(target);
+class ContextMenuItem {
+  constructor (settings) {
+    browser.menus.create({
+      id: settings.id,
+      title: settings.title,
+      contexts: ["all"],
+      onclick(info, tab) {
+       browser.tabs.executeScript(tab.id, {
+         frameId: info.frameId,
+         code: `goaway.hideTarget(${info.targetElementId})`,
+       });
+     },
+    });
   }
-});
+}
+
+var goaway = new ContextMenuItem({"id": "go-away",
+                                  "title":"Go away!"});
