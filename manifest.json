@@ -1,0 +1,13 @@
+{
+  "manifest_version": 2,
+  "name": "Go Away",
+  "version": "1.0",
+
+  "description": "Removes any page element",
+
+  "permissions": ["menus"],
+
+  "background": {
+    "scripts": ["background.js"]
+  }
+}
