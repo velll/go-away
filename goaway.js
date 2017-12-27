@@ -1,14 +1,13 @@
 class GoAway {
-  constructor(){
-    this.wentAway = []
+  bindListener(){
+    browser.runtime.onMessage.addListener(this.hide);
   }
 
-  hideTarget(targetId) {
-    var targetElement = browser.menus.getTargetElement(targetId);
+  hide(target) {
+    var targetElement = browser.menus.getTargetElement(target.id);
     targetElement.style.display = "none";
-
-    console.log(targetId + " went away");
   }
 }
 
 var goaway = new GoAway();
+goaway.bindListener();

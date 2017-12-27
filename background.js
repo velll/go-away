@@ -5,13 +5,10 @@ class ContextMenuItem {
       title: settings.title,
       contexts: ["all"],
       onclick(info, tab) {
-       browser.tabs.executeScript(tab.id, {
-         frameId: info.frameId,
-         code: `goaway.hideTarget(${info.targetElementId})`,
-       });
-     },
+        browser.tabs.sendMessage(tab.id, {"id": info.targetElementId});
+      }
     });
-  }
+  };
 }
 
 var goaway = new ContextMenuItem({"id": "go-away",
