@@ -11,11 +11,20 @@
     "scripts": ["background.js"]
   },
 
+  "icons": {
+     "48": "go-away.svg"
+   },
+
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
       "js": ["goaway.js"]
     }
-  ]
+  ],
 
+  "applications": {
+    "gecko": {
+      "id": "go-away@go-away"
+    }
+  }
 }
